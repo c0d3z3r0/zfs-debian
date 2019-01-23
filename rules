@@ -22,6 +22,10 @@ endif
 
 non_epoch_version=$(shell echo $(KVERS) | perl -pe 's/^\d+://')
 PACKAGE=zfs
+VERSION = $(shell git describe | cut -d- -f2,5)
+REVISION = $(shell date +%s)
+DEB_VERSION = $(VERSION)-$(REVISION)
+
 pmodules = $(PACKAGE)-modules-$(non_epoch_version)
 
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
@@ -30,8 +34,12 @@ export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 	dh $@ --with autoreconf,dkms,python3,systemd,sphinxdoc
 
 override_dh_autoreconf:
+	@#Generate changelog
+	sed "s/@VERSION@/$(DEB_VERSION)/; s/@DATE@/$(shell date -R)/" debian/changelog.in >debian/changelog
+
 	@# Embed the downstream version in the module.
 	@sed -e 's/^Version:.*/Version:       $(DEB_VERSION_UPSTREAM)/' -i.orig META
+	@sed -e 's/^Release:.*/Release:       $(REVISION)/' -i.orig META
 
 	dh_autoreconf
 

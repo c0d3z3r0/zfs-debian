@@ -1,0 +1,5 @@
+zfs-linux (@VERSION@) git; urgency=medium
+
+  * Built from git
+
+ -- local <local>  @DATE@

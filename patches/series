@@ -1,5 +1,4 @@
 0001-Prevent-manual-builds-in-the-DKMS-source.patch
-0002-Check-for-META-and-DCH-consistency-in-autoconf.patch
 enable-zed.patch
 1004-zed-service-bindir.patch
 2000-increase-default-zcmd-allocation-to-256K.patch
