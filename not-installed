@@ -1,4 +1,4 @@
-usr/bin/arc_summary.py
+usr/bin/arc_summary2
 usr/share/zfs/enum-extract.pl
 usr/share/zfs/zfs-helpers.sh
 etc/init.d
