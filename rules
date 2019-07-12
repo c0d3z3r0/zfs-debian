@@ -22,7 +22,7 @@ endif
 
 non_epoch_version=$(shell echo $(KVERS) | perl -pe 's/^\d+://')
 PACKAGE=zfs
-VERSION = $(shell git describe | cut -d- -f2,5)
+VERSION = $(shell git describe | cut -d- -f2)~g$(shell git rev-parse --short HEAD)
 REVISION = $(shell date +%s)
 DEB_VERSION = $(VERSION)-$(REVISION)
 
